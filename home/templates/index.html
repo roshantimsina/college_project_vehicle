@@ -1,0 +1,89 @@
+{% include 'includes/head.html' %}
+<body> 
+	<!-- header -->
+	<div id="home" class="header">
+		<div class="container">
+			<div class="header-nav">
+				<nav class="navbar navbar-default">
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<div class="navbar-header">
+					  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					  </button>
+						<div class="logo">
+							<h1><a class="navbar-brand" href="{% url 'index' %}"><span>V</span> <span>I</span> <span>S</span><br><i>Vehicle Info</i></a></h1>
+						</div>
+					</div> 
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
+					 <ul class="nav navbar-nav">
+						 {% if user.is_authenticated %}
+           <li><a href="{% url 'booking' %}">Booking</a></li>
+         
+         {% else %}
+           <li><a href="{% url 'index' %}">Home</a></li>
+            {% endif %}
+            <li><a href="{% url 'brfilter' %}">Browse</a></li>
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'profile' %}">{{ user.username }}</a></li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+            {% else %}
+            <li><a href="{% url 'login' %}">Login</a></li>
+            <li><a href="{% url 'signup' %}">Sign Up</a></li>
+            {% endif %}
+					</ul>
+					</div><!-- /.navbar-collapse -->
+				</nav>
+			</div>
+		</div>
+	</div>
+	<!-- //header -->
+	<!-- banner -->
+	<div class="banner">  
+		<!-- banner-text -->
+		<div class="banner-text"> 
+			<div class="flexslider">
+				<ul class="slides">
+					<!-- <li>
+						<h5>Taxi Info</h5>
+						<h6>1</h6>
+						<h2>Information About Taxi</h2>
+					</li>
+					<li>
+						<h5>Vehicle Info</h5>
+						<h6>1</h6>
+						<h3>Information About Vehicle</h3>
+					</li> -->
+					
+				</ul>
+			</div>    
+		</div> 
+		<!-- //banner-text -->   
+	</div>
+	<!-- //banner -->
+	<!-- welcome -->
+	<div class="welcome">
+		<div class="container"> 
+			<h3 class="w3title-agile">Welcome</h3> 
+			<div class="w3l-welcome-info">
+				
+				<div class="clearfix"> </div>
+			</div>
+			<div class="w3l-welcome-text">
+				<p>Vehicle Information System is proposed with the intention of upgrading the current stand-alone system to web based or online system.Hopefully with this idea, this system is capable to help smooth and enhance vehicle management of Nepal.This system is all about helping the common people getting access through actual information regarding the accessibility of vehicles.</p>
+			</div>
+		</div>
+	</div>
+	<!-- //welcome -->
+	<!-- about -->
+	
+	<div class="copy-right">
+		<div class="container">
+			<p>&copy; 2017 MTJ. All rights reserved | Design by Veicle Info</p>
+		</div>
+	</div>
+	<!-- //contact -->
+	

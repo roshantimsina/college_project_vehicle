@@ -1,0 +1,177 @@
+{% load staticfiles %}
+{% load widget_tweaks %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>E-Safari</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="keywords" content="MTJ Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+  SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola web design" />
+  <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+  <!-- Custom Theme files -->
+  <link href="{% static 'css/bootstrap.css' %}" type="text/css" rel="stylesheet" media="all">
+  <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet" media="all">  
+  <link href="{% static 'css/font-awesome.css' %}" rel="stylesheet">   <!-- font-awesome icons --> 
+  <link rel="stylesheet" href="{% static 'css/flexslider.css' %}" type="text/css" media="screen" /> 
+  <link rel="stylesheet" href="{% static 'css/lightbox.css' %}">  <!-- light-box -->
+  <!-- //Custom Theme files -->    
+  <!-- web-fonts -->    
+  <link href="//fonts.googleapis.com/css?family=Tulpen+One" rel="stylesheet">
+  <link href='//fonts.googleapis.com/css?family=Roboto+Condensed:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>
+  <!-- //web-fonts -->  
+</head>
+<body> 
+  <!-- header -->
+  <div id="home" class="header">
+    <div class="container">
+      <div class="header-nav">
+        <nav class="navbar navbar-default">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <div class="logo">
+           <h1><a class="navbar-brand" href="{% url 'index' %}"><span>V</span> <span>I</span> <span>S</span><br><i>Vehicle Info</i></a></h1>
+         </div>
+       </div> 
+       <!-- Collect the nav links, forms, and other content for toggling -->
+       <div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          {% if user.is_authenticated %}
+           <li><a href="{% url 'booking' %}">Booking</a></li>
+         
+         {% else %}
+           <li><a href="{% url 'index' %}">Home</a></li>
+            {% endif %}
+            <li><a href="{% url 'brfilter' %}">Browse</a></li>
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'profile' %}">{{ user.username }}</a></li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+            {% else %}
+            <li><a href="{% url 'login' %}">Login</a></li>
+            <li><a href="{% url 'signup' %}">Sign Up</a></li>
+            {% endif %}
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </nav>
+  </div>
+</div>
+</div>
+<!-- //header -->
+
+
+<!-- body -->
+<div class="row browse-page">
+  <div class="col-md-12 browse">
+   <form method="get" action="">
+    <div class="col-md-4">
+
+      <div class="form-group">
+
+        {{ filter.form.vehicle_type.label_tag }}
+        {% render_field filter.form.vehicle_type class="form-control" %}
+        
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        {{ filter.form.source.label_tag }}
+        {% render_field filter.form.source class="form-control" %}
+        
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        {{ filter.form.destination.label_tag }}
+        {% render_field filter.form.destination class="form-control" %}
+      </div>
+    </div>
+
+    <!-- <div class="col-md-8">
+      <div class="form-group">
+        <label>How many people (including children) ?</label>
+          <input type="text" name="passanger" id="passanger">
+          <input type="radio" name="way" checked="checked"> <label id="radio"> Return </label>
+          <input type="radio" name="way"> <label id="radio"> One Way </label>
+      </div>
+    </div> -->
+
+    <div class="col-md-4 pull-right">
+     <button type="submit" class="btn btn-primary pull-right btn-lg">Search</button>
+   </div>
+ </form>
+</div>
+<div class="col-lg-12" style="margin-top: 50px;">
+  <div class="col-xs-12">
+   
+
+    {% for filter in filter.qs %}
+    <section class="item">
+      <div class="row">
+        
+      <div class="image col-md-3">
+        {% for image in filter.browseimage_set.all %}
+         
+        <img src="{{ image.browse_image.url }}" alt='no'>
+          
+        {% endfor %}
+        
+      </div>
+      
+      <div class="col-md-6 center">
+        <div class="col-md-12 top">
+          {{ filter.vehicle_type }}
+        </div>
+        <div class="bottom row">
+          <div class="col-md-4">
+            <i class="fa fa-user"></i>
+            {{ filter.vehicle_name }}
+          </div>
+          <div class="col-md-4">
+            <i class="fa fa-location-arrow"></i>
+            {{ filter.source }}
+          </div>
+          <div class="col-md-4">
+            <i class="fa fa-location-arrow"></i>
+           {{ filter.destination }}
+          </div>
+        </div>
+      </div>
+      <div class="price col-md-3">
+        Fare
+        <h2>{{ filter.fare }}</h2>
+
+        <a href="{% url 'vehicle_detail' filter.id %}">
+        <button type="submit" value="SELECT" class="btn btn-success btn-lg">Vehicle Detail</button></a>
+      
+      </div> 
+    </div>
+    </section>
+
+    {% empty %}
+       <h2 style='text-align:center;'> No data</h2>
+      
+    {% endfor %}
+
+    
+  </div>
+  <!-- /.box -->
+</div>
+</div>
+<!-- body end -->
+
+
+<!-- footer -->
+<div class="copy-right">
+
+ <p> 2017 MTJ. All rights reserved | Design by Roshan </p>
+</div>
+
+
+
+  
