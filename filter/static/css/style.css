@@ -1,3 +1,4 @@
+/*1*/
 /*--
 Author: W3layouts
 Author URL: http://w3layouts.com
@@ -2051,6 +2052,12 @@ legend{
     padding-left: 10px;
     font-size: 20px;
     
+}
+
+@media (max-width: 991px) {
+    .browse {
+        padding-bottom: 60px;
+    }
 }
 
 /*=============================================================================

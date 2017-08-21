@@ -1,9 +1,9 @@
 from django.conf.urls import url
-from .views import BookingFormView
+from .views import booking
 
 urlpatterns=[
 
-url(r'^$',BookingFormView.as_view(),name='booking'),
+url(r'^$',booking,name='booking'),
 
 
 ]

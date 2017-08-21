@@ -5,7 +5,7 @@ from .views import vehicleDetail
 
 
 
-urlpatterns = [
+urlpatterns = [ 
 
 	url(r'^vehicle-detail/(?P<pk>[\d]+)$', vehicleDetail, name='vehicle_detail')
 	

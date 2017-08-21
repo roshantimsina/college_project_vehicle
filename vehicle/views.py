@@ -5,6 +5,7 @@ from django.http import HttpResponse, HttpResponseForbidden
 from django.views.generic.detail import DetailView
 from django.views import generic
 from .models import Vehicle
+from browse.models import Browse
 from browse.models import BrowseImage
  
 
@@ -17,14 +18,15 @@ from browse.models import BrowseImage
 #         return context
 
 def vehicleDetail(request, pk):
-    vehicles = Vehicle.objects.get(pk=pk)
-    img = BrowseImage.objects.all()
-    
+    # vehicles = Vehicle.objects.filter(pk=pk)
+    vehicles = Browse.objects.filter(pk=pk)
+    img = BrowseImage.objects.filter(browse__pk=vehicles) 
+    print(vehicles)
     return render(request, 'vecdetails.html', {
         'vehicles': vehicles,
         'img': img
 
-        })
+        }) 
 
 
 # @login_required
