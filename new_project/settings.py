@@ -53,6 +53,8 @@ INSTALLED_APPS = [
     'browse',
     'userprofile',
     'activities',
+    'location',
+    
     
 
 
@@ -146,3 +148,7 @@ LOGIN_URL='login'
 LOGIN_REDIRECT_URL='profile'
 MEDIA_URL='/media/'
 MEDIA_ROOT=os.path.join(BASE_DIR,'media')
+
+
+GEOPOSITION_MAP_WIDGET_HEIGHT = 500
+GEOPOSITION_GOOGLE_MAPS_API_KEY = 'AIzaSyCNjoHJFnTv9YaeHp7lESuq4Cj6iuwbPbg'
