@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 from activities import views as activities_views
-
+from location import views as location_views
 
 
 
@@ -30,6 +30,8 @@ urlpatterns = [
     # url(r'^search/',include('search.urls'),),
     url(r'^filter/',include('filter.urls'),),
     url(r'^',include('home.urls'),),
+    url(r'^',include('dashboard.urls'),),
+
     url(r'^profile/',include('userprofile.urls'),),
     url(r'^notifications/$', activities_views.notifications,
         name='notifications'),
@@ -38,6 +40,11 @@ urlpatterns = [
     url(r'^notifications/check/$', activities_views.check_notifications,
         name='check_notifications'),
     url(r'^vehicle/',include('vehicle.urls'),),
+    url(r'^location/', location_views.poi_list, name='location-list'),
+
+
+
+
 
 
 ]

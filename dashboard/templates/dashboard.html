@@ -1,0 +1,138 @@
+
+{% load staticfiles %}
+{% include 'includes/head.html' %}
+<link href="{% static 'css/bootcamp.css' %}" type="text/css" rel="stylesheet" media="all">
+
+     <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<link href="{% static 'css/notifications.css' %}" rel="stylesheet">
+<script src="{% static 'js/notifications.js' %}"></script>
+<body>
+<div id="home" class="header">
+		<div class="container">
+			<div class="header-nav">
+				<nav class="navbar navbar-default">
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<div class="navbar-header">
+					  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					  </button>
+						<div class="logo">
+							<h1><a class="navbar-brand" href="{% url 'index' %}"><span>V</span> <span>I</span> <span>S</span><br><i>Vehicle Info</i></a></h1>
+						</div>
+					</div> 
+					<!-- Collect the nav links, forms, and other content for toggling -->
+<div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
+					 <ul class="nav navbar-nav">
+						<li><a href="{% url 'index' %}">Home</a></li>
+            <li><a href="{% url 'booking' %}">Booking</a></li>
+            <li><a href="{% url 'brfilter' %}">Browse</a></li>
+            {% if user.is_superuser %}
+            <li><a href="{% url 'dash' %}">Dashboard </a></li>
+            {% endif %}
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'profile' %}">{{ user.username }}</a></li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+        {% else %}
+            <li><a href="{% url 'login' %}">Login</a></li>
+            <li><a href="{% url 'signup' %}">Sign Up</a></li>
+            {% endif %}
+					</ul>
+					</div><!-- /.navbar-collapse -->
+				</nav>
+			</div>
+		</div>
+	</div>
+<div class="wraper">
+
+
+   
+  {% if user.is_superuser %} 
+   <div class="collapse navbar-collapse" id="menu">
+   <ul class="nav navbar-nav">
+                <li>
+                  <a href="#" id="notifications" data-container="body" data-toggle="popover" data-placement="bottom" title="Notifications">
+                    <span class="glyphicon glyphicon-bell"></span>
+                  </a>
+                </li>
+                
+              </ul>
+              {%  endif %}
+              </div>
+
+   
+    {% for booking in booking_list %}
+
+<section class="item">
+      <div class="row">
+      
+      <div class="col-md-12 center">
+        <div class="col-md-12 top">
+        </div>
+        <div class="bottom row">
+
+          <div class="col-md-2">
+            <i class="fa fa-bus"></i>
+            {{ booking.vehicle_name }}
+          </div>
+
+          <div class="col-md-2">
+            <i class="fa fa-bus"></i>
+            {{ booking.vehicle }}
+          </div>
+
+          <div class="col-md-2">
+            <i class="fa fa-user"></i>
+           {{ booking.user }}
+          </div>
+
+          <div class="col-md-2">
+            <i class="fa fa-location-arrow"></i>
+            {{ booking.source }}
+          </div>
+
+          <div class="col-md-2">
+            <i class="fa fa-location-arrow"></i>
+           {{ booking.destination }}
+          </div>
+
+           <!-- <div class="col-md-2">
+            <i class="fa fa-location-arrow"></i>
+           {{ booking.booking_on }}
+          </div> -->
+
+
+          <div class="col-md-2">
+            <i class="fa fa-location-arrow"></i>
+           {{ booking.booking_for  }}
+          </div>
+
+           
+
+
+
+
+        </div>
+      </div>
+    </section>
+
+    {% empty %}
+       <h2 style='text-align:center;'> No data</h2>
+      
+    {% endfor %}
+</div>
+
+
+
+</div></div>
+<div>
+<div class="fotu">
+	<div class="copy-right">
+		<div class="container">
+			<p>&copy; 2017. All rights reserved | Design by Veicle Info</p>
+		</div>
+	</div>
+	</div>
