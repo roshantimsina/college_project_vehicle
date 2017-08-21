@@ -1,0 +1,73 @@
+{% include 'includes/head.html' %}
+<body> 
+	<!-- header -->
+	<div id="home" class="header">
+		<div class="container">
+			<div class="header-nav">
+				<nav class="navbar navbar-default">
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<div class="navbar-header">
+					  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					  </button>
+						<div class="logo">
+							<h1><a class="navbar-brand" href="{% url 'index' %}"><span>V</span> <span>I</span> <span>S</span><br><i>Vehicle Info</i></a></h1>
+						</div>
+					</div> 
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
+					 <ul class="nav navbar-nav">
+						<li><a href="{% url 'index' %}">Home</a></li>
+            <!-- <li><a href="{% url 'booking' %}">Booking</a></li> -->
+            <li><a href="{% url 'brfilter' %}">Browse</a></li>
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'profilesettings' %}">{{ user.username }}</a></li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+            {% else %}
+            <li><a href="{% url 'login' %}">Login</a></li>
+            <li><a href="{% url 'signup' %}">Sign Up</a></li>
+            {% endif %}
+					</ul>
+					</div><!-- /.navbar-collapse -->
+				</nav>
+			</div>
+		</div>
+	</div>
+	<!-- //header -->
+
+
+
+
+<div class="fotu">
+<div class="container">
+	  <div class="row" style="margin-bottom:50px;">
+        <div class="col-md-5 col-md-offset-7">
+            <form method="post" accept-charset="utf-8" class="form" role="form">{% csrf_token %}
+                <legend style="font-family:"helvetica",sans serif;">Login</legend>
+               
+                
+                <input style="border-radius:2px;" type="text" name="username" id="id_username" value="" class="form-control input-lg" placeholder="Your Email"  />
+                <input style="border-radius:2px;" type="password" name="password" id="id_password" value="" class="form-control input-lg" placeholder="Password"  />
+               
+               
+                 <button style="border-radius:2px;" class="btn btn-lg btn-primary btn-block signup-btn" type="submit">Login</button>
+            </form>          
+          </div>
+</div>  
+</div>
+</div></div>
+
+
+
+
+
+	<div class="copy-right">
+		<div class="container">
+			<p>&copy; 2017. All rights reserved | Design by Veicle Info</p>
+		</div>
+	</div>
+
+</body>
